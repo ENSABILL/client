@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col" *ngFor="let creancier of creancierService.creanciers">
+        <div class="card">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img [src]="creancier.agence.image" class="img-fluid" alt="Image 1">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{creancier.name}}</h5>
+                <ul class="card-text">
+                    <li *ngFor="let service of creancier.services">
+                        {{service}}
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary">Consulter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add more cards here -->
+    </div>
+  </div>
+  
