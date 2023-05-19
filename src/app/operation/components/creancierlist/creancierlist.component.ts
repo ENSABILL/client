@@ -7,7 +7,8 @@ import { CreancierService } from '../../services/creancier.service';
   styleUrls: ['./creancierlist.component.css']
 })
 export class CreancierlistComponent {
-
+  selected: string = "";
+  
   constructor(public creancierService: CreancierService){
     
   }

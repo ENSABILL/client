@@ -1,27 +1,58 @@
+<div class="d-flex justify-content-center">
+
+  <mat-form-field>
+    <mat-label>view by category</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="FACTURE">Facture</mat-option>
+      <mat-option value="RECHARGE">Recharge</mat-option>
+      <mat-option value="DONATION">Donation</mat-option>
+    </mat-select>
+</mat-form-field>
+
+  </div>
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col" *ngFor="let creancier of creancierService.creanciers">
-        <div class="card">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img [src]="creancier.agence.image" class="img-fluid" alt="Image 1">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div *ngFor="let creancier of creancierService.creanciers" class="col">
+      <div class="card mb-2 col h-100">
+        <div class="row g-0 h-100">
+          <div class="col-md-4 m-auto d-flex justify-content-center">
+            <img
+              [src]="creancier.agence.image"
+              class="img-fluid rounded-start custom-card-img"
+            />
+          </div>
+          <div class="col-md-8 d-flex flex-column justify-content-between">
+            <div class="card-body">
+              <h5 class="card-title">{{ creancier.name }}</h5>
+              <ul class="list-group list-group-flush">
+                <li
+                  *ngFor="let service of creancier.services"
+                  class="list-group-item fw-bold"
+                >
+                  {{ service }}
+                </li>
+              </ul>
             </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">{{creancier.name}}</h5>
-                <ul class="card-text">
-                    <li *ngFor="let service of creancier.services">
-                        {{service}}
-                    </li>
-                </ul>
-                <a href="#" class="btn btn-primary">Consulter</a>
-              </div>
+            <div class="d-flex justify-content-end m-2">
+              <a
+                mat-raised-button
+                color=""
+                [routerLink]="[
+                  creancier.category.toLowerCase(),
+                  creancier.name
+                ]"
+                color="primary"
+              >
+                <div class="d-flex justify-content-base align-items-center">
+                  Consulter
+                  <mat-icon>arrow_right_alt</mat-icon>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Add more cards here -->
     </div>
   </div>
-  
+</div>
