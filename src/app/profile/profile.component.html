@@ -1,0 +1,42 @@
+<p>profile works!</p>
+<h2>
+    {{title}}
+</h2>
+
+<div>
+   First name: {{fName}}
+</div>
+<div>
+   Last name: {{lName}}
+</div>
+<div>
+   Email: {{email}}
+</div>
+<div>
+   solde: {{solde}}
+</div>
+
+<button class="btn btn-primary d-flex" (click)="showListFacture()">
+   {{showList ?'Cacher':'Afficher'}} l'historiques 
+</button>
+
+<h3 *ngIf="showList" class="text_center"> Historiques de payement</h3>
+<table class="center" *ngIf="showList">
+
+   <tr>
+       <th>Id</th>
+       <th>Date de payement</th>
+       <th>Montant payé</th>
+   </tr>
+     
+   <tr *ngFor="let Facture of historiques">
+       <td>{{Facture.id}}</td>
+       <td>{{Facture.date_payement}}</td>
+       <td>{{Facture.montant_paye}}</td>
+   </tr>
+   
+</table>
+
+
+
+
