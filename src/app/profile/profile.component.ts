@@ -8,12 +8,12 @@ import { IFacture } from './IFacture';
 })
 export class ProfileComponent {
 
-  public title:string="Profile";
 
   public lName: string = 'Ahl Mbarek';
   public fName: string = 'Ghada';
   public email: string = 'ghadaahlmbarek@gmail.com';
   public solde: number = 2752;
+  public image: string = 'assets/profile.PNG'
 
   public  historiques: IFacture[]= [
     {

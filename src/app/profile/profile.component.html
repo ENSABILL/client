@@ -1,32 +1,40 @@
-<p>profile works!</p>
-<h2>
-    {{title}}
-</h2>
 
-<div>
-   First name: {{fName}}
-</div>
-<div>
-   Last name: {{lName}}
-</div>
-<div>
-   Email: {{email}}
-</div>
-<div>
-   solde: {{solde}}
-</div>
+<h1 style="margin-left: 170px; font-weight:500; ">
+    Bienvenue {{lName}} {{fName}} 
+</h1>
 
-<button class="btn btn-primary d-flex" (click)="showListFacture()">
-   {{showList ?'Cacher':'Afficher'}} l'historiques 
-</button>
+<div class="row center_div">
 
-<h3 *ngIf="showList" class="text_center"> Historiques de payement</h3>
-<table class="center" *ngIf="showList">
+    <div class="col-3">
+        <img src="{{image}}" alt="votre phto de profil"  class="img" height="170" width="160"/>
+    </div>
+    <div class="col-5" >
+        <h2>Vos coordonnées personnelles</h2>
+        <p class="text"> 
+            Nom: {{lName}}
+            <br>
+            Prénom: {{fName}}
+            <br>
+            Email: {{email}}
+            <br>
+            solde: {{solde}} Dh
+        </p>
+            <button  class="btn btn-primary d-flex button" (click)="showListFacture()">
+                {{showList ?'Cacher':'Afficher'}} l'historiques 
+             </button>
+    </div>
+
+  </div>
+  
+
+<h2 *ngIf="showList" class="text_center" style=" margin-bottom: 10px; margin-top: 15px;"> Historiques de payement</h2>
+
+<table *ngIf="showList" class="center_tab" style="font-size: medium;">
 
    <tr>
        <th>Id</th>
        <th>Date de payement</th>
-       <th>Montant payé</th>
+       <th>Montant payé (Dh)</th>
    </tr>
      
    <tr *ngFor="let Facture of historiques">

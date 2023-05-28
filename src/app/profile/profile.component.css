@@ -15,11 +15,32 @@ table {
     background-color: #dddddd;
   }
 
-  .center {
+  .center_tab {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .center_div{
+    margin-left: 270px;
   }
 
   .text_center{
     text-align: center;
   }
+
+  .text{
+    font-size:larger;
+  }
+
+
+  .button{
+    display: inline-block;
+    font-size: 14px;
+  
+  }
+
+  .img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    }
