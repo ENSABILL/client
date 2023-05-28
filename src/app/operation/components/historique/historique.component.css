@@ -1,0 +1,25 @@
+h1{
+    font-size: 35px;
+    font-weight:500;
+    margin-top: 20px;
+  }
+  table {
+  
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+    }
+    
+    td, th {
+      border: 2px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  
+  
+  
+  

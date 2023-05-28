@@ -1,5 +1,5 @@
 <h1>
-    List of all unpaid invoices 
+    List of all paid invoices 
 </h1>
 
 
@@ -11,19 +11,15 @@
             <th>Creditor</th>
             <th>deadline</th>
             <th>Amount (Dh)</th>
-            <th>Pay</th>
         </tr>
       
-        <tr *ngFor="let Facture of unpaidInvoice">
+        <tr *ngFor="let Facture of paidInvoice">
             <td>{{Facture.creditor}}</td>
             <td>{{Facture.date_payement}}</td>
             <td>{{Facture.montant_paye}}</td>
-            <td><input  type="checkbox" (change)="toggleSelection(Facture)" /></td>
         </tr>
     
     </table>
 
-    <app-modal style="float: right; margin-bottom: 20px;" [invoices]="selectedInvoices" [total]="Total"></app-modal>
-
-
 </div>
+

@@ -8,8 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+import { HistoriqueComponent } from './components/historique/historique.component';
 @NgModule({
-  declarations: [CreancierlistComponent, MainComponent],
+  declarations: [CreancierlistComponent, MainComponent, HistoriqueComponent],
   imports: [
     CommonModule,
     OperationRoutingModule,

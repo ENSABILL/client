@@ -1,9 +1,9 @@
 
-<h1 style="margin-left: 170px; font-weight:500; ">
+<h1 style="margin-left: 300; font-weight:500; ">
     Bienvenue {{lName}} {{fName}} 
 </h1>
 
-<div class="row center_div">
+<div class="row">
 
     <div class="col-3">
         <img src="{{image}}" alt="votre phto de profil"  class="img" height="170" width="160"/>
@@ -28,22 +28,9 @@
   
 
 <h2 *ngIf="showList" class="text_center" style=" margin-bottom: 10px; margin-top: 15px;"> Historiques de payement</h2>
-
-<table *ngIf="showList" class="center_tab" style="font-size: medium;">
-
-   <tr>
-       <th>Id</th>
-       <th>Date de payement</th>
-       <th>Montant payé (Dh)</th>
-   </tr>
-     
-   <tr *ngFor="let Facture of historiques">
-       <td>{{Facture.id}}</td>
-       <td>{{Facture.date_payement}}</td>
-       <td>{{Facture.montant_paye}}</td>
-   </tr>
-   
-</table>
+<div *ngIf="showList" class="center_tab" style="font-size: medium;">
+    !! il faut appeler app-historique
+</div>
 
 
 

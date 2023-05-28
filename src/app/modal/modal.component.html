@@ -13,7 +13,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title" id="exampleModalLabel">Quote</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -41,7 +41,7 @@
 
             </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">Close</button>
                     <button type="button" class="btn btn-primary" (click)="doSomething()">Validate</button>
                 </div>
         </div>

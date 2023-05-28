@@ -32,5 +32,9 @@ export class ModalComponent implements OnInit{
     this.formModal.hide();
   }
 
+  close(){
+    this.formModal.hide();
+  }
+
 
 }
