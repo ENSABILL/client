@@ -1,0 +1,52 @@
+h1{
+    font-size: 35px;
+    margin-left: 170px;
+    font-weight:500;
+    margin-top: 20px;
+}
+table {
+
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  td, th {
+    border: 2px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  .center_tab {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .center_div{
+    margin-left: 270px;
+  }
+
+  .text_center{
+    text-align: center;
+  }
+
+  .text{
+    font-size:larger;
+  }
+
+
+  .button{
+    display: inline-block;
+    font-size: 14px;
+  
+  }
+
+  .img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    }

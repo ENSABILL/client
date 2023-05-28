@@ -1,0 +1,50 @@
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="col">
+            <button type="button" class="btn btn-primary" (click)="openModel()">Pay invoices</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Quote</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Selected invoices</h2>
+ 
+                <table  class="center_tab" style="font-size: medium;">
+
+                    <tr>
+                        <th>Id</th>
+                        <th>Amount (Dh)</th>
+                    </tr>
+                    <tr *ngFor="let Facture of invoices">
+                        <td>{{Facture.id}}</td>
+                        <td>{{Facture.montant_paye}}</td>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                          <td colspan="1" class="total-label">Total</td>
+                          <td class="total-value">{{total}}</td>
+                        </tr>
+                      </tfoot>
+                
+                </table>
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="doSomething()">Validate</button>
+                </div>
+        </div>
+    </div>
+</div>
+

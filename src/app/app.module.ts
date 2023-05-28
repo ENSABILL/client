@@ -10,6 +10,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile.component';
+import { ModalComponent } from './modal/modal.component';
+import { PayerFactureComponent } from './payer-facture/payer-facture.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
     NavbarComponent,
     FooterComponent,
     ProfileComponent,
+    ModalComponent,
+    PayerFactureComponent,
   ],
   imports: [
     BrowserModule,
