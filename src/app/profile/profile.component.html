@@ -1,31 +1,73 @@
 
-<h1 style="margin-left: 300; font-weight:500; ">
-    Bienvenue {{lName}} {{fName}} 
-</h1>
+<div class="row" style=" background: linear-gradient(180deg,#78377b, #4a536b );">
 
-<div class="row">
-
-    <div class="col-3">
+    <div class="col-4"  >
         <img src="{{image}}" alt="votre phto de profil"  class="img" height="170" width="160"/>
     </div>
-    <div class="col-5" >
-        <h2>Vos coordonnées personnelles</h2>
-        <p class="text"> 
-            Nom: {{lName}}
+    <div class="col-5"  >
+        <h1 style="color:aliceblue">{{fName}} {{lName}} </h1>
+        <p class="text" style="font-size: 20px;" style="color:aliceblue">
+            {{email}}
             <br>
-            Prénom: {{fName}}
+            {{id}}
             <br>
-            Email: {{email}}
-            <br>
-            solde: {{solde}} Dh
+            Jabbek Lah
         </p>
-            <button  class="btn btn-primary d-flex button" (click)="showListFacture()">
-                {{showList ?'Cacher':'Afficher'}} l'historiques 
-             </button>
+
+        <button  class="btn btn-primary d-flex button" (click)="showListFacture()" style="float: right;">
+            {{showList ?'Cacher':'Afficher'}} l'historiques 
+         </button>
+
     </div>
 
+</div>
+
+<!--Il faut ajouter les liens de consultation et les logo-->
+<div class="container overflow-hidden" style="margin-top: 20px;">
+    <div class="row gx-5">
+      <div class="col">
+       <div class="p-3 border bg-light">
+        <div class="row">
+            <div class="col-2"><img [src]="image" class="logo"></div>
+            <div class="col-6">Change Password</div>
+            <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+        </div>
+        <div class="row">
+            <div class="col-2"><img [src]="image" class="logo"></div>
+            <div class="col-6">Share Information Account</div>
+            <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+        </div>
+        <div class="row">
+            <div class="col-2"><img [src]="image" class="logo"></div>
+            <div class="col-6">Show History</div>
+            <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+        </div>
+       </div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light">
+            <div class="row">
+                <div class="col-2"><img [src]="image" class="logo"></div>
+                <div class="col-6">Terms & Conditions</div>
+                <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+            </div>
+            <div class="row">
+                <div class="col-2"><img [src]="image" class="logo"></div>
+                <div class="col-6">Questions & Answers</div>
+                <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+            </div>
+            <div class="row">
+                <div class="col-2"><img [src]="image" class="logo"></div>
+                <div class="col-6">Contact</div>
+                <div class="col-2"><a class="nav-link" routerLink="#">Consulter</a></div>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
+
+
 
 <h2 *ngIf="showList" class="text_center" style=" margin-bottom: 10px; margin-top: 15px;"> Historiques de payement</h2>
 <div *ngIf="showList" class="center_tab" style="font-size: medium;">

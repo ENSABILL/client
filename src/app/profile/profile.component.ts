@@ -11,6 +11,7 @@ export class ProfileComponent {
 
   public lName: string = 'Ahl Mbarek';
   public fName: string = 'Ghada';
+  public id : number = 345987;
   public email: string = 'ghadaahlmbarek@gmail.com';
   public solde: number = 2752;
   public image: string = 'assets/profile.PNG'
