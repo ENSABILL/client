@@ -10,17 +10,8 @@ import { ALertOptions } from 'src/app/shared/models/alert.model';
 })
 export class CreancierlistComponent {
   selected: string = '';
-  options: ALertOptions = {
-    autoClose: false,
-    keepAfterRouteChange: false,
-  };
   constructor(
     public creancierService: CreancierService,
     private alerrtService: AlertService
-  ) {
-    this.alerrtService.success('yooohooo !', {
-      keepAfterRouteChange: true
-    });
-    this.alerrtService.error("nooo!",this.options);
-  }
+  ) {}
 }

@@ -9,6 +9,7 @@ import { OtpComponent } from './components/otp/otp.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatedInputComponent } from '../shared/components/validated-input/validated-input.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
