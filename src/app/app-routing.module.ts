@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./operation/operation.module').then((m) => m.OperationModule),
   },
+  {
+    path: "auth",
+    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+  },
   { path: '**', component: NotfoundComponent },
 ];
 

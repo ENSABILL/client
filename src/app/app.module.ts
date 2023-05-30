@@ -11,7 +11,10 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ValidatedInputComponent } from './shared/components/validated-input/validated-input.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

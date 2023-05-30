@@ -1,0 +1,18 @@
+<mat-form-field class="w-100">
+  <mat-label>{{ placeHolder }}</mat-label>
+  <input
+    type="email"
+    matInput
+    [formControl]="control"
+    [placeholder]="placeHolder || ''"
+    [type]="inputType"
+  />
+  <ng-container *ngIf="showError()"  class="alert alert-danger">
+    <mat-error *ngIf="control.getError('required')">{{placeHolder}} is required</mat-error>
+    <mat-error *ngIf="control.getError('minlength')">You have entered {{control.getError('minlength').actualLength}} characters but it
+        requires {{control.getError('minlength').requiredLength}} characters</mat-error>
+    <mat-error *ngIf="control.getError('maxlength')">You have entered {{control.getError('maxlength').actualLength}} characters but it
+        requires {{control.getError('maxlength').requiredLength}} characters</mat-error>
+    <mat-error *ngIf="control.getError('email')">This is not a valid email</mat-error>
+  </ng-container>
+</mat-form-field>
