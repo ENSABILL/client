@@ -1,18 +1,81 @@
-<mat-form-field class="w-100">
-  <mat-label>{{ placeHolder }}</mat-label>
-  <input
-    type="email"
-    matInput
-    [formControl]="control"
-    [placeholder]="placeHolder || ''"
-    [type]="inputType"
-  />
-  <ng-container *ngIf="showError()"  class="alert alert-danger">
-    <mat-error *ngIf="control.getError('required')">{{placeHolder}} is required</mat-error>
-    <mat-error *ngIf="control.getError('minlength')">You have entered {{control.getError('minlength').actualLength}} characters but it
-        requires {{control.getError('minlength').requiredLength}} characters</mat-error>
-    <mat-error *ngIf="control.getError('maxlength')">You have entered {{control.getError('maxlength').actualLength}} characters but it
-        requires {{control.getError('maxlength').requiredLength}} characters</mat-error>
-    <mat-error *ngIf="control.getError('email')">This is not a valid email</mat-error>
-  </ng-container>
-</mat-form-field>
+<ng-container [ngSwitch]="inputType">
+  <!-- date -->
+  <mat-form-field *ngSwitchCase="'date'" class="w-100">
+    <mat-label>Choose a date of birth</mat-label>
+    <input matInput [matDatepicker]="datepicker" [formControl]="control" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="datepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>
+          Apply
+        </button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+    <ng-container *ngIf="showError()" class="alert alert-danger">
+      <mat-error *ngIf="control.getError('required')"
+        >{{ placeHolder }} is required</mat-error
+      >
+      <mat-error *ngIf="control.getError('pattern')"
+        >this is not a valid date</mat-error
+      >
+    </ng-container>
+  </mat-form-field>
+
+  <!-- phone -->
+  <mat-form-field *ngSwitchCase="'phone'" class="w-100">
+    <mat-label>{{ placeHolder }}</mat-label>
+    <span matPrefix>+212 &nbsp;</span>
+    <input
+      type="tel"
+      matInput
+      placeholder="06xxxxxxxx | 07xxxxxxxx"
+      [formControl]="control"
+    />
+    <mat-icon matSuffix>phone</mat-icon>
+
+    <ng-container *ngIf="showError()" class="alert alert-danger">
+      <mat-error *ngIf="control.getError('required')"
+        >{{ placeHolder }} is required</mat-error
+      >
+      <mat-error *ngIf="control.getError('pattern')"
+        >this is not a valid phone</mat-error
+      >
+    </ng-container>
+  </mat-form-field>
+
+  <!-- default input -->
+  <mat-form-field *ngSwitchDefault class="w-100">
+    <mat-label>{{ placeHolder }}</mat-label>
+    <input
+      matInput
+      [formControl]="control"
+      [placeholder]="placeHolder || ''"
+      [type]="inputType"
+    />
+    <ng-container *ngIf="showError()" class="alert alert-danger">
+      <mat-error *ngIf="control.getError('required')"
+        >{{ placeHolder }} is required</mat-error
+      >
+      <mat-error *ngIf="control.getError('minlength')"
+        >You have entered
+        {{ control.getError("minlength").actualLength }} characters but it
+        requires
+        {{ control.getError("minlength").requiredLength }} characters</mat-error
+      >
+      <mat-error *ngIf="control.getError('maxlength')"
+        >You have entered
+        {{ control.getError("maxlength").actualLength }} characters but it
+        requires
+        {{ control.getError("maxlength").requiredLength }} characters</mat-error
+      >
+      <mat-error *ngIf="control.getError('email')"
+        >This is not a valid email</mat-error
+      >
+    </ng-container>
+  </mat-form-field>
+</ng-container>

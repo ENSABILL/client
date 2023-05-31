@@ -25,9 +25,12 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.authService.currentUserValue;
     if (currentUser) {
       if (currentUser.userType !== UserType.CLIENT) {
+        console.log("not client")
+        this.authService.logout();
         this.router.navigate(['/', 'auth', 'login']);
         this.alertService.error('you are not a client !', {
           keepAfterRouteChange: true,
+          autoClose: true,
         });
         return false;
       }

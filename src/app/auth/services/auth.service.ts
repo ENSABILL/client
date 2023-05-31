@@ -40,6 +40,10 @@ export class AuthService {
       );
   }
 
+  register(payload: { [key: string]: string }) {
+    return this.http.post<any>(`${API_BASE_URL}/client/signup`, payload);
+  }
+
   logout() {
     this.tokenStorageService.clear();
     this.currentUserSubject.next(null);

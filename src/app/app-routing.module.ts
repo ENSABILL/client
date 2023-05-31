@@ -5,7 +5,7 @@ import { NotfoundComponent } from './shared/components/notfound/notfound.compone
 import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   {
     path: 'account',
     loadChildren: () =>

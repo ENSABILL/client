@@ -45,7 +45,7 @@ export class LoginComponent {
         next: () => {
           const returnUrl: string = this.route.snapshot.queryParams['returnUrl'] || '/';
           
-          this.router.navigate(["/","operations"]);
+          this.router.navigate([returnUrl]);
           this.loading = false;
         },
         error: error => {

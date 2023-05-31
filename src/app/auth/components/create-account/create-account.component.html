@@ -1,45 +1,38 @@
-<!-- <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Company (disabled)</mat-label>
-      <input matInput disabled value="Google">
-    </mat-form-field>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>First name</mat-label>
-        <input matInput>
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Long Last Name That Will Be Truncated</mat-label>
-        <input matInput>
-      </mat-form-field></td>
-    </tr></table>
-  
-    <p>
-      <mat-form-field class="example-full-width">
-        <mat-label>Address</mat-label>
-        <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Address 2</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-    </p>
-  
-    <table class="example-full-width" cellspacing="0"><tr>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>City</mat-label>
-        <input matInput placeholder="Ex. San Francisco">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>State</mat-label>
-        <input matInput placeholder="Ex. California">
-      </mat-form-field></td>
-      <td><mat-form-field class="example-full-width">
-        <mat-label>Postal Code</mat-label>
-        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
-        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-      </mat-form-field></td>
-    </tr></table>
-  </form>
-   -->
+<section>
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 d-flex justify-content-center">
+        <img
+          src="../../../../assets/jabeklah.png"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <app-validated-input [control]="signUpForm.controls.username" [placeHolder]="'username'" [inputType]="'text'" />
+          <app-validated-input [control]="signUpForm.controls.firstName" [placeHolder]="'firstName'" [inputType]="'text'" />
+          <app-validated-input [control]="signUpForm.controls.lastName" [placeHolder]="'lastName'" [inputType]="'text'" />
+          <app-validated-input [control]="signUpForm.controls.email" [placeHolder]="'email'" [inputType]="'email'" />
+          <app-validated-input [control]="signUpForm.controls.CIN" [placeHolder]="'CIN'" [inputType]="'text'" />
+          <app-validated-input [control]="signUpForm.controls.dob" [placeHolder]="'dob'" [inputType]="'date'" /> 
+          <app-validated-input [control]="signUpForm.controls.phoneNumber" [placeHolder]="'phone'" [inputType]="'phone'" /> 
+          
+
+
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button mat-raised-button color="primary" [disabled]="loading ">Send Request</button>
+
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+              Already have an account?
+              <a [routerLink]="['..', 'login']" class="link-danger"
+                >login</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -25,15 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((err) => {
         let error = err;
         if (error instanceof HttpErrorResponse) {
-          error = err?.error?.message || err?.statusText;
+          error = error?.error;
           if (400 <= err.status && err.status <= 500) {
-            console.log(err)
-            this.alertService.error(error, {
-              keepAfterRouteChange: true,
-            });
+            this.alertService.error(error);
             this.authService.logout();
-
-            location.reload();
           }
         }
 
