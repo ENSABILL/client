@@ -10,6 +10,18 @@ const routes: Routes = [
         path: '',
         component: MainComponent,
       },
+      // {
+      //   path: '/recharge/:name',
+      //   component: MainComponent,
+      // },
+      // {
+      //   path: '/facture/:name',
+      //   component: MainComponent,
+      // },
+      // {
+      //   path: '/donation/:name',
+      //   component: MainComponent,
+      // },
     ],
   },
 ];

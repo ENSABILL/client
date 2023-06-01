@@ -1,0 +1,43 @@
+<section>
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 d-flex justify-content-center">
+        <img
+          src="../../../../assets/jabeklah.png"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          
+          <app-validated-input
+            [control]="loginForm.controls.username"
+            [placeHolder]="'username'"
+            [inputType]="'text'"
+          />
+          <app-validated-input
+            [control]="loginForm.controls.password"
+            [placeHolder]="'password'"
+            [inputType]="'password'"
+          />
+          <div class="d-flex justify-content-between align-items-center">
+
+            <a [routerLink]="['..','forgot-pass']" class="text-body">Forgot password?</a>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button mat-raised-button color="primary" [disabled]="loading || loginForm.invalid">Login</button>
+
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a [routerLink]="['..', 'signup']" class="link-danger"
+                >Send a request for registration.</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
