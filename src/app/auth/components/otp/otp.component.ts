@@ -26,8 +26,12 @@ export class OtpComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private alertService: AlertService
   ) {
-    if(! authService.currentUser){
-      this.router.navigate(["/","auth","login"]);
+    if (this.authService.isTokenExpired()) {
+      this.authService.logout();
+      this.router.navigate(['/', 'auth', 'login']);
+    }
+    if (!authService.currentUser) {
+      this.router.navigate(['/', 'auth', 'login']);
     }
     if (!authService.currentUserValue?.firstLogin) {
       this.router.navigate(['/']);
@@ -108,7 +112,11 @@ export class OtpComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/', 'auth', 'change-password']);
+          this.router.navigate(['/', 'auth', 'change-password'], {
+            state: {
+              token: this.token,
+            },
+          });
         },
         error: (error) => {
           this.loading = false;
@@ -119,23 +127,22 @@ export class OtpComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // remove this if condition in production
-    if(false){
-
+    // if (false) {
       this.authService
-      .sendOtp()
-      .pipe(first())
-      .subscribe({
-        next: (token) => {
-          this.alertService.success('otp code sent successfully');
-          this.token = token;
-        },
-        error: (error) => {
-          console.log(error)
-          this.token = null;
-          this.alertService.error(error);
-        },
-      });
-    }
+        .sendOtp()
+        .pipe(first())
+        .subscribe({
+          next: (token) => {
+            this.alertService.success('otp code sent successfully');
+            this.token = token;
+          },
+          error: (error) => {
+            console.log(error);
+            this.token = null;
+            this.alertService.error(error);
+          },
+        });
+    // }
   }
   ngOnDestroy(): void {
     this.unsubscribe$.next(null);

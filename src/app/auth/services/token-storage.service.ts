@@ -17,8 +17,20 @@ export class TokenStorageService {
     return user ? user[field as keyof User] : null;
   }
 
+  setUserField(field: string, value: any): User | null {
+    let user = this.getUser();
+    if (user) {
+      user = {
+        ...user,
+        [field]: value,
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    return user;
+  }
+
   getUser(): User | null {
-    const user: User = JSON.parse(localStorage.getItem('user') || "{}");
+    const user: User = JSON.parse(localStorage.getItem('user') || '{}');
     return Object.keys(user).length ? user : null;
   }
   setUser(user: User) {

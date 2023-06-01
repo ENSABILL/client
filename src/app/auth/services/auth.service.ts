@@ -55,8 +55,41 @@ export class AuthService {
     });
   }
 
+  changePassword(
+    newPassword: string,
+    reNewPassword: string,
+    token?: string | null
+  ) {
+    return this.http.post(
+      `${API_BASE_URL}/auth/reset-password`,
+      {
+        token,
+        newPassword,
+      },
+      {
+        responseType: 'text',
+      }
+    );
+  }
+
   logout() {
     this.tokenStorageService.clear();
     this.currentUserSubject.next(null);
+  }
+
+  isTokenExpired() {
+    if (!this.currentUserValue?.token) {
+      return true;
+    }
+    const expiry = JSON.parse(
+      atob(this.currentUserValue?.token.split('.')[1])
+    ).exp;
+
+    return expiry * 1000 < Date.now();
+  }
+
+  updateUser(field: string, value: any) {
+    const user: User | null = this.tokenStorageService.setUserField(field, value);
+    this.currentUserSubject.next(user);
   }
 }
