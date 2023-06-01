@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
 
 const { API_BASE_URL } = environment;
@@ -42,6 +42,17 @@ export class AuthService {
 
   register(payload: { [key: string]: string }) {
     return this.http.post<any>(`${API_BASE_URL}/client/signup`, payload);
+  }
+
+  sendOtp() {
+    return this.http.post(`${API_BASE_URL}/auth/get-otp`, null, {
+      responseType: 'text',
+    });
+  }
+  verifyOtp(payload: { code: string; token: string }) {
+    return this.http.post(`${API_BASE_URL}/auth/verify-otp`, payload, {
+      responseType: 'text',
+    });
   }
 
   logout() {

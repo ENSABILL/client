@@ -28,7 +28,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           error = error?.error;
           if (400 <= err.status && err.status <= 500) {
             this.alertService.error(error);
-            this.authService.logout();
           }
         }
 

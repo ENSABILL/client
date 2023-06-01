@@ -74,7 +74,7 @@ export class CreateAccountComponent {
             'Thank you for registering. You registration request will be taken in consideration'
           );
           this.loading = false;
-          this.signUpForm.reset();
+            this.signUpForm.reset();
         },
         error: (error) => {
           this.loading = false;

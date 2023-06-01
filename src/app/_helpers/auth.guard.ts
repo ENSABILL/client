@@ -4,9 +4,7 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { UserType } from '../auth/models/user.model';
 import { AlertService } from '../shared/services/alert.service';
