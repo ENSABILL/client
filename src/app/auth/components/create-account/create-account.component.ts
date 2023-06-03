@@ -23,7 +23,7 @@ export class CreateAccountComponent {
     lastName: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     dob: new FormControl([Validators.required]),
-    CIN: new FormControl('', [Validators.required]),
+    cin: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [
       Validators.required,
       Validators.pattern(/^(06|07)\d{8}$/),
@@ -54,7 +54,7 @@ export class CreateAccountComponent {
       'firstName',
       'lastName',
       'dob',
-      'CIN',
+      'cin',
       'email',
       'phoneNumber',
     ];
@@ -74,7 +74,7 @@ export class CreateAccountComponent {
             'Thank you for registering. You registration request will be taken in consideration'
           );
           this.loading = false;
-            this.signUpForm.reset();
+          this.signUpForm.reset();
         },
         error: (error) => {
           this.loading = false;
