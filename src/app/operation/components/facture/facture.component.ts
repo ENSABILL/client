@@ -79,12 +79,14 @@ export class FactureComponent implements OnInit {
         if (operation) {
           this.selectedOperations = [...this.selectedOperations, operation];
         }
+        this.calculateTotal();
         break;
 
       case 'unselect':
         this.selectedOperations = this.selectedOperations.filter(
           (operation) => operation.id != operationId
         );
+        this.calculateTotal();
         break;
 
       default:
@@ -92,21 +94,28 @@ export class FactureComponent implements OnInit {
     }
   }
 
+  calculateTotal() {
+    this.total = 0;
+    for (let operation of this.selectedOperations) {
+      this.total += operation.amount;
+    }
+  }
   toggleAllOperations(typeToggle: 'select' | 'unselect') {
     switch (typeToggle) {
       case 'select':
         this.selectedOperations = this.unpaidOperations;
+        this.calculateTotal();
         break;
       case 'unselect':
         this.selectedOperations = [];
+        this.calculateTotal();
         break;
       default:
         break;
     }
-    console.log(this.selectedOperations);
   }
 
-   showOtpModal() {
+  showOtpModal() {
     console.log('otp modal');
   }
 }
