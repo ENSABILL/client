@@ -18,6 +18,7 @@ export class FactureComponent implements OnInit {
   currentUser: User | null;
   id: string = '';
   unpaidOperations: Operation[] = [];
+  selectedOperations: Operation[] = [];
   total: number = 0;
 
   creancier?: Creancier;
@@ -62,7 +63,50 @@ export class FactureComponent implements OnInit {
       });
   }
 
-  showOtpModal(){
-    console.log("otp modal")
+  toggleOperation({
+    operationId,
+    typeToggle,
+  }: {
+    operationId: string;
+    typeToggle: 'select' | 'unselect';
+  }) {
+    switch (typeToggle) {
+      case 'select':
+        const operation = this.unpaidOperations.find(
+          (operation) => operation.id == operationId
+        );
+
+        if (operation) {
+          this.selectedOperations = [...this.selectedOperations, operation];
+        }
+        break;
+
+      case 'unselect':
+        this.selectedOperations = this.selectedOperations.filter(
+          (operation) => operation.id != operationId
+        );
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  toggleAllOperations(typeToggle: 'select' | 'unselect') {
+    switch (typeToggle) {
+      case 'select':
+        this.selectedOperations = this.unpaidOperations;
+        break;
+      case 'unselect':
+        this.selectedOperations = [];
+        break;
+      default:
+        break;
+    }
+    console.log(this.selectedOperations);
+  }
+
+   showOtpModal() {
+    console.log('otp modal');
   }
 }

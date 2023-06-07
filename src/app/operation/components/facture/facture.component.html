@@ -4,28 +4,11 @@
       <h4 class="mb-3 border-bottom border-1 pb-3 my-2">
         Paiement des factures
       </h4>
-      <!-- <div class="card">
-        <div class="row bg-white mx-2 py-4">
-          <div class="col-md-2">
-            <img
-              [src]="creancier?.agency?.image"
-              class="mx-auto d-block img-fluid"
-              alt=""
-            />
-          </div>
-          <div class="col-md-3">
-            <h4>Créancier</h4>
-            <h6>{{ creancier?.name }}</h6>
-          </div>
-          <div class="col-md-7">
-            <h4>Débiteur</h4>
-            <h6>{{ currentUser?.fullName }}</h6>
-          </div>
-        </div>
-      </div> -->
-      <div class="card mb-3" >
+      <div class="card mb-3">
         <div class="row g-0 py-4 mx-2">
-          <div class="col-md-4 d-flex justify-content-center align-items-center">
+          <div
+            class="col-md-4 d-flex justify-content-center align-items-center"
+          >
             <img
               [src]="creancier?.agency?.image"
               class="mx-auto d-block img-fluid"
@@ -41,7 +24,6 @@
                 <li>email: {{ currentUser?.email }}</li>
                 <li>agence: {{ creancier?.agency?.name }}</li>
               </ul>
-              <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
             </div>
           </div>
         </div>
@@ -53,32 +35,66 @@
           <p class="card-text"></p>
 
           <div class="overflow-scroll">
-            <app-multi-select-table
-              [data]="unpaidOperations"
-              [displayedColumns]="[
-                { name: 'id', value: ['id'] },
-                { name: 'amount', value: ['amount'] },
-                { name: 'status', value: ['operationStatus'] },
-                { name: 'créancier', value: ['service', 'name'] },
-                { name: 'type', value: ['service', 'type'] },
-                { name: 'username', value: ['clientUsername'] },
-                { name: 'email', value: ['clientEmail'] }
-              ]"
-            />
+            <ng-container *ngIf="unpaidOperations.length !== 0">
+              <app-multi-select-table
+                (toggleAllOperationsEvent)="toggleAllOperations($event)"
+                (toggleOperationEvent)="toggleOperation($event)"
+                [data]="unpaidOperations"
+                [displayedColumns]="[
+                  { name: 'id', value: ['id'] },
+                  { name: 'amount', value: ['amount'] },
+                  {
+                    name: 'status',
+                    value: ['operationStatus'],
+                    class: 'badge bg-warning text-dark'
+                  },
+                  { name: 'créancier', value: ['service', 'name'] },
+                  {
+                    name: 'type',
+                    value: ['service', 'type'],
+                    class: 'badge bg-dark'
+                  },
+                  { name: 'username', value: ['clientUsername'] },
+                  { name: 'email', value: ['clientEmail'] }
+                ]"
+              />
+            </ng-container>
+            <div
+              class="m-auto text-center"
+              *ngIf="unpaidOperations.length == 0"
+            >
+              <hr />
+              <span>Vous avez aucunes facture a payer</span>
+              <hr />
+            </div>
           </div>
-
-          <div class="m-auto" *ngIf="unpaidOperations.length == 0">
-            <hr />
-            <span>Vous avez aucunes facture a payer</span>
-            <hr />
+          <hr />
+          <div class="row mt-2">
+            <div class="d-flex justify-content-center align-items-end flex-column">
+              <ul class="list-unstyled">
+                <li class="text-muted ms-3">
+                  <span class="text-black me-4">Penalites</span>0DHS
+                </li>
+                <li class="text-muted ms-3 mt-2">
+                  <span class="text-black me-4">Frais</span>0DHS
+                </li>
+              </ul>
+              <p class="text-black float-start">
+                <span class="text-black me-3"> Total Amount</span
+                ><span style="font-size: 25px">{{total}} DHS</span>
+              </p>
+            </div>
           </div>
+          <hr />
         </div>
-        <div class="m-2 d-flex justify-content-end">
+        <div
+          class="m-2 d-flex justify-content-end"
+          *ngIf="unpaidOperations.length !== 0"
+        >
           <button
             type="button"
-            class="btn btn-success text-capitalize"
+            class="btn btn-warning text-capitalize text-dark"
             (click)="showOtpModal()"
-            style="background-color: #60bd7a"
           >
             Pay Now
           </button>
