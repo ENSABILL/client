@@ -1,27 +1,38 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-multi-select-table',
   templateUrl: './multi-select-table.component.html',
   styleUrls: ['./multi-select-table.component.css'],
   standalone: true,
-  imports: [MatTableModule, MatCheckboxModule, NgFor],
+  imports: [MatTableModule, MatCheckboxModule, NgFor, NgClass],
 })
 export class MultiSelectTableComponent implements OnChanges {
-  @Input() displayedColumns: { name: string; value: string[] }[] = [];
+  @Input() displayedColumns: { name: string; value: string[], class?: string }[] = [];
   @Input() data?: any;
   dataSource?: MatTableDataSource<any>;
   selection?: SelectionModel<any> = new SelectionModel<any>(true, []);
+
+  @Output() toggleOperationEvent = new EventEmitter<{
+    operationId: string;
+    typeToggle: 'select' | 'unselect';
+  }>();
+  @Output() toggleAllOperationsEvent = new EventEmitter<
+    'select' | 'unselect'
+  >();
+
   constructor() {
     this.dataSource = new MatTableDataSource<any>(this.data);
   }
@@ -37,11 +48,28 @@ export class MultiSelectTableComponent implements OnChanges {
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection?.clear();
+      this.toggleAllOperationsEvent.emit('unselect');
       return;
     }
 
     if (this.dataSource?.data) {
       this.selection?.select(...this.dataSource.data);
+      this.toggleAllOperationsEvent.emit('select');
+    }
+  }
+
+  toggleRow(row: any) {
+    this.selection?.toggle(row);
+    if (this.selection?.isSelected(row)) {
+      this.toggleOperationEvent.emit({
+        operationId: row?.id,
+        typeToggle: 'select',
+      });
+    } else {
+      this.toggleOperationEvent.emit({
+        operationId: row?.id,
+        typeToggle: 'unselect',
+      });
     }
   }
 
