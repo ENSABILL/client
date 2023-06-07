@@ -28,6 +28,7 @@ export class CreateAccountComponent {
       Validators.required,
       Validators.pattern(/^(06|07)\d{8}$/),
     ]),
+    accountLimit: new FormControl('ACC_200', [Validators.required]),
   });
   loading: boolean = false;
 
@@ -44,6 +45,7 @@ export class CreateAccountComponent {
   }
 
   onSubmit() {
+    console.log(this.signUpForm.controls.accountLimit.value);
     if (this.signUpForm.invalid) {
       return;
     }
@@ -57,6 +59,7 @@ export class CreateAccountComponent {
       'cin',
       'email',
       'phoneNumber',
+      "accountLimit"
     ];
     const payload: any = {};
     for (const field of fields) {

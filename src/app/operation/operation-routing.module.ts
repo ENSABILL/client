@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
+import { FactureComponent } from './components/facture/facture.component';
 
 const routes: Routes = [
   {
@@ -14,10 +15,10 @@ const routes: Routes = [
       //   path: '/recharge/:name',
       //   component: MainComponent,
       // },
-      // {
-      //   path: '/facture/:name',
-      //   component: MainComponent,
-      // },
+      {
+        path: 'facture/:id',
+        component: FactureComponent,
+      },
       // {
       //   path: '/donation/:name',
       //   component: MainComponent,

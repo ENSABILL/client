@@ -89,6 +89,7 @@ export class AuthService {
   }
 
   updateUser(field: string, value: any) {
+    // send post request here and change localstorage after if success
     const user: User | null = this.tokenStorageService.setUserField(field, value);
     this.currentUserSubject.next(user);
   }
