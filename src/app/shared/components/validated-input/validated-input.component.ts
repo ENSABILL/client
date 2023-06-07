@@ -7,6 +7,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-validated-input',
@@ -24,13 +25,15 @@ import { MatIconModule } from '@angular/material/icon';
     MatNativeDateModule,
     MatIconModule,
     MatButtonModule,
+    MatSelectModule,
   ],
 })
 export class ValidatedInputComponent {
   @Input() placeHolder?: string;
   @Input() inputType: string = 'text';
   @Input() control!: FormControl;
-
+  @Input() options: { value: string; title: string }[] = [];
+  
   constructor() {}
 
   showError() {

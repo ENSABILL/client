@@ -14,6 +14,8 @@ import { AlertComponent } from './shared/components/alert/alert.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MultiSelectTableComponent } from './shared/components/multi-select-table/multi-select-table.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

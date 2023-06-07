@@ -1,58 +1,79 @@
-<div class="d-flex justify-content-center">
-
-  <mat-form-field>
+<div class="d-flex flex-column m-auto mt-2">
+  <div class="container">
+    <form [formGroup]="searchForm"  (submit)="onSubmit()">
+      <mat-form-field class="w-100" appearance="fill">
+        <input
+          matInput
+          [formControl]="searchForm.controls.search"
+          placeholder="Search a creancier by name"
+          type="text"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <mat-form-field class="mt-2 container">
     <mat-label>view by category</mat-label>
-    <mat-select [(value)]="selected">
+    <mat-select
+      [(value)]="selectedType"
+      (selectionChange)="handleTypeAndSearchChange()"
+    >
       <mat-option>None</mat-option>
       <mat-option value="FACTURE">Facture</mat-option>
       <mat-option value="RECHARGE">Recharge</mat-option>
       <mat-option value="DONATION">Donation</mat-option>
     </mat-select>
-</mat-form-field>
-
-  </div>
+  </mat-form-field>
+</div>
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div *ngFor="let creancier of creancierService.creanciers" class="col">
-      <div class="card mb-2 col h-100">
-        <div class="row g-0 h-100">
-          <div class="col-md-4 m-auto d-flex justify-content-center">
-            <img
-              [src]="creancier.agence.image"
-              class="img-fluid rounded-start custom-card-img"
-            />
-          </div>
-          <div class="col-md-8 d-flex flex-column justify-content-between">
-            <div class="card-body">
-              <h5 class="card-title">{{ creancier.name }}</h5>
-              <ul class="list-group list-group-flush">
-                <li
-                  *ngFor="let service of creancier.services"
-                  class="list-group-item fw-bold"
-                >
-                  {{ service }}
-                </li>
-              </ul>
+    <div
+      class="d-flex align-items-center justify-content-center w-100"
+      *ngIf="loading; else creanciersBlock"
+    >
+      <mat-spinner class="p-0"></mat-spinner>
+    </div>
+    <ng-template #creanciersBlock>
+      <div *ngFor="let creancier of filteredCreanciers" class="col">
+        <div class="card mb-2 col h-100 p-2">
+          <div class="row g-0 h-100">
+            <div class="col-md-4 m-auto d-flex justify-content-center">
+              <img
+                [src]="creancier.agency.image"
+                class="img-fluid rounded-start"
+              />
             </div>
-            <div class="d-flex justify-content-end m-2">
-              <a
-                mat-raised-button
-                color=""
-                [routerLink]="[
-                  creancier.category.toLowerCase(),
-                  creancier.name
-                ]"
-                color="primary"
-              >
-                <div class="d-flex justify-content-base align-items-center">
-                  Consulter
-                  <mat-icon>arrow_right_alt</mat-icon>
-                </div>
-              </a>
+            <div class="col-md-8 d-flex flex-column justify-content-between">
+              <div class="card-body">
+                <h4 class="card-title">{{ creancier.name }}</h4>
+                <ul class="list-group list-group-flush">
+                  <li
+                    *ngFor="let product of creancier.products"
+                    class="list-group-item fw-bold"
+                  >
+                    {{ product }}
+                  </li>
+                </ul>
+              </div>
+              <div class="d-flex justify-content-end m-2">
+                <a
+                  mat-raised-button
+                  color=""
+                  [routerLink]="[
+                    creancier.type.toLowerCase(),
+                    creancier.id
+                  ]"
+                  color="primary"
+                >
+                  <div class="d-flex justify-content-base align-items-center">
+                    Consulter
+                    <mat-icon>arrow_right_alt</mat-icon>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-template>
   </div>
 </div>

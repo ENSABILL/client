@@ -2,7 +2,11 @@
   <!-- date -->
   <mat-form-field *ngSwitchCase="'date'" class="w-100">
     <mat-label>Choose a date of birth</mat-label>
-    <input matInput [matDatepicker]="datepicker" [formControl]="control" />
+    <input
+      matInput
+      [matDatepicker]="datepicker"
+      [formControl]="control"
+    />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle
       matIconSuffix
@@ -44,6 +48,21 @@
       >
       <mat-error *ngIf="control.getError('pattern')"
         >this is not a valid phone</mat-error
+      >
+    </ng-container>
+  </mat-form-field>
+
+  <mat-form-field *ngSwitchCase="'radio'" class="w-100">
+    <mat-label>Select an {{ placeHolder }}</mat-label>
+    <mat-select disableRipple [formControl]="control">
+      <mat-option [value]="option.value" *ngFor="let option of options">{{
+        option.title
+      }}</mat-option>
+    </mat-select>
+
+    <ng-container *ngIf="showError()" class="alert alert-danger">
+      <mat-error *ngIf="control.getError('required')"
+        >{{ placeHolder }} is required</mat-error
       >
     </ng-container>
   </mat-form-field>
