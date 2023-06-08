@@ -1,0 +1,63 @@
+<ng-template #otpModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Verify otp</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex justify-content-center align-items-center container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card py-5 px-3">
+        <h2 class="m-0">Mobile phone verification</h2>
+        <span class="mobile-text"
+          >Enter the code we just send on your mobile phone
+          <b class="text-danger">{{ currentUser?.phoneNumber }}</b></span
+        >
+        <div class="d-flex flex-row mt-5">
+          <ng-container *ngFor="let input of formInput; index as i">
+            <input
+              type="text"
+              formControlName="{{ input }}"
+              class="form-control m-2"
+              maxlength="1"
+            />
+          </ng-container>
+        </div>
+        <div
+          *ngIf="showError()"
+          [ngClass]="{
+            'alert alert-danger mt-2 d-flex flex-column': showError()
+          }"
+        >
+          <mat-error *ngIf="hasRequiredError()">
+            otp code number is required
+          </mat-error>
+
+          <mat-error *ngIf="hasPatternError()">
+            otp code must be number
+          </mat-error>
+        </div>
+        <button
+          mat-flat-button
+          color="primary"
+          class="mt-2"
+          [disabled]="loading"
+        >
+          Verify
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
