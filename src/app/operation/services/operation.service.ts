@@ -24,4 +24,12 @@ export class OperationService {
   getPaidOperations() {
     return this.http.get<Operation[]>(`${API_BASE_URL}/operation/paidBills`);
   }
+
+  payFactures(creancierId: string, operationsIds: string[], token?: string) {
+    return this.http.post<Operation[]>(`${API_BASE_URL}/operation/pay-bills`, {
+      operationsIds,
+      serviceId: creancierId,
+      token,
+    });
+  }
 }

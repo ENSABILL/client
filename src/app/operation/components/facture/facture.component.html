@@ -104,45 +104,79 @@
       </div>
 
       <ng-template #acceptPayment let-modal>
-
         <div class="modal-header">
           <h4 class="modal-title" id="modal-basic-title">Récapitulation</h4>
-          <button type="button" class="btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')">
-      
-          </button>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')"
+          ></button>
         </div>
         <div class="modal-body">
           <table class="table table-hover">
             <tbody>
               <tr>
                 <td class="title">Débiteur :</td>
-                <td>{{currentUser?.fullName}}</td>
+                <td>{{ currentUser?.fullName }}</td>
               </tr>
               <tr>
                 <td class="title">Montant :</td>
-                <td>{{total}} DHS</td>
+                <td>{{ total }} DHS</td>
               </tr>
               <tr>
                 <td class="title">Bénéficiaire :</td>
-                <td>{{creancier?.agency?.name}}</td>
+                <td>{{ creancier?.agency?.name }}</td>
               </tr>
               <tr>
                 <td class="title">Date :</td>
-                <td>{{date}}</td>
+                <td>{{ date }}</td>
               </tr>
-      
-      
             </tbody>
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Annuler</button>
-          <button type="button" class="btn btn-outline-dark" (click)="otpModal.openModalFunction()">Valider</button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')"
+          >
+            Annuler
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="openOtpModale()"
+          >
+            Valider
+          </button>
         </div>
-      
       </ng-template>
 
-      <app-otp-modal #otpModal></app-otp-modal>
+      <app-otp-modal
+        #otpModal
+        (openCheckoutModalEvent)="openCheckoutModal($event)"
+      ></app-otp-modal>
+      <app-payment-modal
+        #checkoutModal
+        [selectedOperations]="selectedOperations"
+        [displayedColumns]="[
+          { name: 'id', value: ['id'] },
+          { name: 'amount', value: ['amount'] },
+          {
+            name: 'status',
+            value: ['operationStatus'],
+            class: 'badge bg-warning text-dark'
+          },
+          { name: 'créancier', value: ['service', 'name'] },
+          {
+            name: 'type',
+            value: ['service', 'type'],
+            class: 'badge bg-dark'
+          },
+        ]"
+        [operationType]="'FACTURE'"
+      />
     </div>
   </div>
 </div>

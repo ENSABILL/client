@@ -26,6 +26,6 @@
             otp code must be number
         </mat-error>
     </div>
-    <button mat-flat-button color="primary" class="mt-2" [disabled]="loading">Verify</button>
+    <button mat-flat-button color="primary" class="mt-2" [disabled]="form.invalid || loading">Verify</button>
   </form>
 </div>

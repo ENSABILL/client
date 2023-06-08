@@ -44,7 +44,7 @@
           mat-flat-button
           color="primary"
           class="mt-2"
-          [disabled]="loading"
+          [disabled]="form.invalid || loading"
         >
           Verify
         </button>
