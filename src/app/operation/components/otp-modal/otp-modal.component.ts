@@ -93,7 +93,7 @@ export class OtpModalComponent {
       centered: true,
       scrollable: true,
     });
-    if (false) {
+    // if (false) {
     alert;
     this.authService
       .sendOtp()
@@ -114,16 +114,16 @@ export class OtpModalComponent {
           this.token = null;
         },
       });
-    }
+    // }
   }
   onSubmit() {
     if (this.form.invalid) {
       return;
     }
     const otpCode = Object.values(this.form.value).join('');
-    this.modalService.dismissAll();
-    this.openCheckoutModalEvent.emit(this.token || "");
-    return;
+    // this.modalService.dismissAll();
+    // this.openCheckoutModalEvent.emit(this.token || "");
+    // return;
 
     this.loading = true;
     this.authService

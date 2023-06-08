@@ -1,26 +1,37 @@
 <ng-template #checkoutModal let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Checkout</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
+  <div class="modal-header">
+    <h4 class="modal-title">Checkout</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center container"
+    >
+      <app-table
+        [dataSource]="selectedOperations"
+        [displayedColumns]="displayedColumns"
+      />
     </div>
-    <div class="modal-body">
-      <div class="d-flex flex-column justify-content-center align-items-center container">
-        <app-table [dataSource]="selectedOperations" [displayedColumns]="displayedColumns"  />
-      </div>
+    <div class="d-flex justify-content-end">
+
+        Total: {{total}} DHS
     </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-light"
-        (click)="modal.close('Close click')"
-      >
-        Close
-      </button>
-    </div>
-  </ng-template>
-  
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="checkout()">
+      Valider
+    </button>
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
