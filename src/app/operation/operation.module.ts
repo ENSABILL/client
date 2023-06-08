@@ -20,6 +20,7 @@ import { MultiSelectTableComponent } from '../shared/components/multi-select-tab
 import { OtpModalComponent } from './components/otp-modal/otp-modal.component';
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 import { TableComponent } from '../shared/components/table/table.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TableComponent } from '../shared/components/table/table.component';
     RechargeComponent,
     OtpModalComponent,
     PaymentModalComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,

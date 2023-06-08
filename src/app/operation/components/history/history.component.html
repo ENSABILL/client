@@ -1,0 +1,22 @@
+<app-table
+  [dataSource]="paidOperations"
+  [displayedColumns]="[
+    { name: 'id', value: ['id'] },
+    { name: 'amount', value: ['amount'] },
+    {
+      name: 'status',
+      value: ['operationStatus'],
+      class: 'badge bg-warning text-dark'
+    },
+    { name: 'créancier', value: ['service', 'name'] },
+    {
+      name: 'type',
+      value: ['service', 'type'],
+      class: 'badge bg-dark'
+    },
+    {
+        name: 'operationTime',
+        value: ['operationTime'], 
+    }
+  ]"
+/>
