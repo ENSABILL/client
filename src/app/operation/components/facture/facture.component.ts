@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CreancierService } from '../../services/creancier.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/models/user.model';
@@ -21,8 +21,9 @@ export class FactureComponent implements OnInit {
   unpaidOperations: Operation[] = [];
   selectedOperations: Operation[] = [];
   total: number = 0;
-  openOtpModal: boolean = false;
   date?: string;
+  @ViewChild('otpModal') otpModal: any;
+  @ViewChild('checkoutModal') checkoutModal: any;
 
   creancier?: Creancier;
   constructor(
@@ -130,7 +131,18 @@ export class FactureComponent implements OnInit {
     this.date = new Date().toLocaleString();
 
     if (this.total > 0) {
-      this.modalService.open(content, { scrollable: true, centered: true });
+      this.modalService.open(content, {
+        scrollable: true,
+        centered: true,
+      });
     }
+  }
+
+  openOtpModale(){
+    this.otpModal.openModalFunction();
+  }
+
+  openCheckoutModal(token: string) {
+    this.checkoutModal.openModalFunction(token);
   }
 }

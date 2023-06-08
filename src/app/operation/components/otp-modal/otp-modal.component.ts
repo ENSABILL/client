@@ -1,7 +1,9 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewChild,
   ViewChildren,
@@ -30,6 +32,7 @@ export class OtpModalComponent {
   form: FormGroup;
   formInput = ['input1', 'input2', 'input3', 'input4'];
   loading: boolean = false;
+  @Output() openCheckoutModalEvent = new EventEmitter<string>();
 
   constructor(
     private authService: AuthService,
@@ -107,7 +110,7 @@ export class OtpModalComponent {
         error: (error) => {
           console.log(error);
           // add toast
-          this.toastr.error('something went wrong! sending otp code failed',"ssss");
+          this.toastr.error('something went wrong! sending otp code failed');
           this.token = null;
         },
       });
@@ -118,6 +121,10 @@ export class OtpModalComponent {
       return;
     }
     const otpCode = Object.values(this.form.value).join('');
+    // this.modalService.dismissAll();
+    // this.openCheckoutModalEvent.emit(this.token || "");
+    // return;
+
     this.loading = true;
     this.authService
       .verifyOtp({
@@ -128,15 +135,13 @@ export class OtpModalComponent {
       .subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/', 'auth', 'change-password'], {
-            state: {
-              token: this.token,
-            },
-          });
+          this.modalService.dismissAll();
+          // this code must be in next handler
+          this.openCheckoutModalEvent.emit(this.token || "");
         },
         error: (error) => {
           this.loading = false;
-          // this.alertService.error(error || 'Your otp code is not valid.');
+          this.toastr.error('Your otp code is not valid.','otp error');
         },
       });
   }

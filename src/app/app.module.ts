@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MultiSelectTableComponent } from './shared/components/multi-select-table/multi-select-table.component';
 import { ToastrModule } from 'ngx-toastr';
+import { TableComponent } from './shared/components/table/table.component';
 
 @NgModule({
   declarations: [
