@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { FactureComponent } from './components/facture/facture.component';
 import { RechargeComponent } from './components/recharge/recharge.component';
+import { DonationComponent } from './components/donation/donation.component';
 
 const routes: Routes = [
   {
@@ -20,10 +21,10 @@ const routes: Routes = [
         path: 'facture/:id',
         component: FactureComponent,
       },
-      // {
-      //   path: '/donation/:name',
-      //   component: MainComponent,
-      // },
+      {
+        path: 'donation/:id',
+        component: DonationComponent,
+      },
     ],
   },
 ];

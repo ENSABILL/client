@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Operation } from '../models/operation.model';
-import { forkJoin } from 'rxjs';
 
 const { API_BASE_URL } = environment;
 
@@ -42,5 +41,11 @@ export class OperationService {
     });
   }
 
-  
+  payDonation(creancierId: string, amount: string, token?: string) {
+    return this.http.post<Operation>(`${API_BASE_URL}/operation/pay-donation`, {
+      serviceId: creancierId,
+      amount,
+      token,
+    });
+  }
 }

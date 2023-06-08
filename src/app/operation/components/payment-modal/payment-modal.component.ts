@@ -53,7 +53,7 @@ export class PaymentModalComponent {
         this.payFactures();
         break;
       case 'DONATION':
-        console.log('pay donation');
+        this.payDonation();
         break;
       case 'RECHARGE':
         this.payRecharges();
@@ -103,6 +103,38 @@ export class PaymentModalComponent {
 
     this.operationService
       .payRecharges(creancierId, rechargeAmounts, this.token)
+      .pipe(first())
+      .subscribe({
+        next: (_) => {
+          this.alertService.success(
+            'Your payment went successfully, thanks for using our service !',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations']);
+        },
+        error: (error) => {
+          this.alertService.error(
+            error ||
+              'an error occured while processing payment! try again later',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations']);
+        },
+      });
+  }
+
+  payDonation() {
+    const amount = this.selectedOperations[0].amount;
+    const creancierId = this.selectedOperations[0].creancierId;
+
+    this.operationService
+      .payDonation(creancierId, amount, this.token)
       .pipe(first())
       .subscribe({
         next: (_) => {
