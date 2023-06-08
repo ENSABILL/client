@@ -10,7 +10,9 @@ export class Operation {
     public clientEmail: string,
     public service: Creancier,
     public operationTime: string | null
-  ) {}
+  ) {
+    this.operationTime = new Date(this.operationTime || '').toLocaleString();
+  }
 }
 
 export enum OperationStatus {
