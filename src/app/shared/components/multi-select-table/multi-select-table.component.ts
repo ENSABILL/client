@@ -26,7 +26,7 @@ export class MultiSelectTableComponent implements OnChanges {
   selection?: SelectionModel<any> = new SelectionModel<any>(true, []);
 
   @Output() toggleOperationEvent = new EventEmitter<{
-    operationId: string;
+    operationId: any;
     typeToggle: 'select' | 'unselect';
   }>();
   @Output() toggleAllOperationsEvent = new EventEmitter<
@@ -90,6 +90,7 @@ export class MultiSelectTableComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.data = changes['data'].currentValue;
     this.dataSource = new MatTableDataSource<any>(this.data);
+    console.log(this.data)
   }
 
   get displayColumnKeys() {
