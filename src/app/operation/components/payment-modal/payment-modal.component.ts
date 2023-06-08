@@ -2,9 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -59,7 +56,7 @@ export class PaymentModalComponent {
         console.log('pay donation');
         break;
       case 'RECHARGE':
-        console.log('pay recharge');
+        this.payRecharges();
         break;
       default:
         break;
@@ -74,7 +71,41 @@ export class PaymentModalComponent {
       .payFactures(creancierId, operationsIds, this.token)
       .pipe(first())
       .subscribe({
-        next: (response) => {
+        next: (_) => {
+          this.alertService.success(
+            'Your payment went successfully, thanks for using our service !',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations']);
+        },
+        error: (error) => {
+          this.alertService.error(
+            error ||
+              'an error occured while processing payment! try again later',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations']);
+        },
+      });
+  }
+
+  payRecharges() {
+    const rechargeAmounts = this.selectedOperations.map(
+      (recharge) => recharge.amount
+    );
+    const creancierId = this.selectedOperations[0].creancierId;
+
+    this.operationService
+      .payRecharges(creancierId, rechargeAmounts, this.token)
+      .pipe(first())
+      .subscribe({
+        next: (_) => {
           this.alertService.success(
             'Your payment went successfully, thanks for using our service !',
             {

@@ -138,7 +138,7 @@ export class FactureComponent implements OnInit {
     }
   }
 
-  openOtpModale(){
+  openOtpModal(){
     this.otpModal.openModalFunction();
   }
 
