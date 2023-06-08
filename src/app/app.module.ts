@@ -16,6 +16,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MultiSelectTableComponent } from './shared/components/multi-select-table/multi-select-table.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MultiSelectTableComponent } from './shared/components/multi-select-tabl
     BrowserAnimationsModule,
     MatIconModule,
     NgbModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

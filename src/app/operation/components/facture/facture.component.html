@@ -70,7 +70,9 @@
           </div>
           <hr />
           <div class="row mt-2">
-            <div class="d-flex justify-content-center align-items-end flex-column">
+            <div
+              class="d-flex justify-content-center align-items-end flex-column"
+            >
               <ul class="list-unstyled">
                 <li class="text-muted ms-3">
                   <span class="text-black me-4">Penalites</span>0DHS
@@ -81,7 +83,7 @@
               </ul>
               <p class="text-black float-start">
                 <span class="text-black me-3"> Total Amount</span
-                ><span style="font-size: 25px">{{total}} DHS</span>
+                ><span style="font-size: 25px">{{ total }} DHS</span>
               </p>
             </div>
           </div>
@@ -94,137 +96,53 @@
           <button
             type="button"
             class="btn btn-warning text-capitalize text-dark"
-            (click)="showOtpModal()"
+            (click)="showAcceptPayment(acceptPayment)"
           >
             Pay Now
           </button>
         </div>
       </div>
 
-      <!--
-        <div class="form-group d-flex justify-content-end mt-3">
-          <button
-            [disabled]="loading"
-            class="btn btn-primary ms-2"
-            (click)="openDialog(content)"
-          >
-            <span
-              *ngIf="loading"
-              class="spinner-border spinner-border-sm mr-1"
-            ></span>
-            Suivant
+      <ng-template #acceptPayment let-modal>
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Récapitulation</h4>
+          <button type="button" class="btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')">
+      
           </button>
         </div>
-      </div>
-    </div>
-  </div>
-  
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Récapitulation</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <table class="table table-hover">
-        <tbody>
-          <tr>
-            <td class="title">Débiteur :</td>
-            <td>{{ nom }}</td>
-          </tr>
-          <tr>
-            <td class="title">Montant :</td>
-            <td>{{ total }}</td>
-          </tr>
-          <tr>
-            <td class="title">Bénéficiaire :</td>
-            <td>{{ provider?.name }}</td>
-          </tr>
-          <tr>
-            <td class="title">Date :</td>
-            <td>{{ date }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="modal.close('Save click')"
-      >
-        Annuler
-      </button>
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="openOTPDialog(otp)"
-      >
-        Valider
-      </button>
-    </div>
-  </ng-template>
-  
-  <ng-template #otp let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Code de confirmation</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="otpForm" class="bg-white p-3">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="">
-              <input
-                type="text"
-                name="otp"
-                formControlName="otp"
-                class="form-control"
-                placeholder="Code de confirmation.."
-                [ngClass]="{
-                  'is-invalid': submitted1 && (otpError || o['otp'].errors)
-                }"
-              />
-              <div
-                *ngIf="submitted1 && (otpError || o['otp'].errors)"
-                class="invalid-feedback"
-              >
-                <div *ngIf="submitted1 && (otpError || o['otp'].errors)">
-                  Code invalide
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td class="title">Débiteur :</td>
+                <td>{{currentUser?.fullName}}</td>
+              </tr>
+              <tr>
+                <td class="title">Montant :</td>
+                <td>{{total}} DHS</td>
+              </tr>
+              <tr>
+                <td class="title">Bénéficiaire :</td>
+                <td>{{creancier?.agency?.name}}</td>
+              </tr>
+              <tr>
+                <td class="title">Date :</td>
+                <td>{{date}}</td>
+              </tr>
+      
+      
+            </tbody>
+          </table>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="modal.close('Save click')"
-      >
-        Annuler
-      </button>
-      <button type="button" class="btn btn-outline-dark" (click)="verifyOTP()">
-        Valider
-      </button>
-    </div>
-  </ng-template>
-   -->
-      <!-- </div>
-    </div>
-  </div>
-</div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Annuler</button>
+          <button type="button" class="btn btn-outline-dark" (click)="otpModal.openModalFunction()">Valider</button>
+        </div>
+      
+      </ng-template>
+
+      <app-otp-modal #otpModal></app-otp-modal>
     </div>
   </div>
 </div>

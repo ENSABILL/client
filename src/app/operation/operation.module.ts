@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MultiSelectTableComponent } from '../shared/components/multi-select-table/multi-select-table.component';
+import { OtpModalComponent } from './components/otp-modal/otp-modal.component';
+import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MultiSelectTableComponent } from '../shared/components/multi-select-tab
     FactureComponent,
     DonationComponent,
     RechargeComponent,
+    OtpModalComponent,
+    PaymentModalComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +46,8 @@ import { MultiSelectTableComponent } from '../shared/components/multi-select-tab
     MatFormFieldModule,
     MatInputModule,
     MultiSelectTableComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class OperationModule {}

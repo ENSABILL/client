@@ -4,10 +4,11 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/auth/models/user.model';
 import { Creancier } from '../../models/creancier.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first, of, throwError } from 'rxjs';
+import { first } from 'rxjs';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { OperationService } from '../../services/operation.service';
 import { Operation } from '../../models/operation.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-facture',
@@ -20,6 +21,8 @@ export class FactureComponent implements OnInit {
   unpaidOperations: Operation[] = [];
   selectedOperations: Operation[] = [];
   total: number = 0;
+  openOtpModal: boolean = false;
+  date?: string;
 
   creancier?: Creancier;
   constructor(
@@ -28,13 +31,20 @@ export class FactureComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalService: NgbModal
   ) {
     this.currentUser = this.authService?.currentUserValue;
   }
 
   ngOnInit(): void {
     const creancierId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (!creancierId) {
+      this.alertService.warning('Creancier Not Found', {
+        keepAfterRouteChange: true,
+      });
+      this.router.navigate(['/', 'operations']);
+    }
     this.creancierService
       .getCreancier(creancierId || '')
       .pipe(first())
@@ -79,12 +89,14 @@ export class FactureComponent implements OnInit {
         if (operation) {
           this.selectedOperations = [...this.selectedOperations, operation];
         }
+        this.calculateTotal();
         break;
 
       case 'unselect':
         this.selectedOperations = this.selectedOperations.filter(
           (operation) => operation.id != operationId
         );
+        this.calculateTotal();
         break;
 
       default:
@@ -92,21 +104,33 @@ export class FactureComponent implements OnInit {
     }
   }
 
+  calculateTotal() {
+    this.total = 0;
+    for (let operation of this.selectedOperations) {
+      this.total += operation.amount;
+    }
+  }
   toggleAllOperations(typeToggle: 'select' | 'unselect') {
     switch (typeToggle) {
       case 'select':
         this.selectedOperations = this.unpaidOperations;
+        this.calculateTotal();
         break;
       case 'unselect':
         this.selectedOperations = [];
+        this.calculateTotal();
         break;
       default:
         break;
     }
-    console.log(this.selectedOperations);
   }
 
-   showOtpModal() {
-    console.log('otp modal');
+  showAcceptPayment(content: any) {
+    this.alertService.clear();
+    this.date = new Date().toLocaleString();
+
+    if (this.total > 0) {
+      this.modalService.open(content, { scrollable: true, centered: true });
+    }
   }
 }
