@@ -9,7 +9,6 @@ import { NotfoundComponent } from './shared/components/notfound/notfound.compone
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ProfileComponent } from './profile/profile.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -18,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MultiSelectTableComponent } from './shared/components/multi-select-table/multi-select-table.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TableComponent } from './shared/components/table/table.component';
+import { ProfileComponent } from './account/components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { TableComponent } from './shared/components/table/table.component';
     NotfoundComponent,
     NavbarComponent,
     FooterComponent,
-    ProfileComponent,
     AlertComponent,
   ],
   imports: [
@@ -36,7 +35,7 @@ import { TableComponent } from './shared/components/table/table.component';
     BrowserAnimationsModule,
     MatIconModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

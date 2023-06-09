@@ -1,0 +1,113 @@
+<div class="p-4 card d-flex">
+  <div class="border-right">
+    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+      <img
+        class="rounded-circle mt-5"
+        width="150px"
+        src="../../../../assets/goujo_cat.jpg"
+      />
+    </div>
+  </div>
+  <div class="d-flex flex-column align-items-center">
+    <h1>{{ currentUser?.fullName }}</h1>
+    <div class="text" style="font-size: 20px">
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">id </span> :
+        {{ currentUser?.id }}
+      </h3>
+      <br />
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">email </span> :
+        {{ currentUser?.email }}
+      </h3>
+      <br />
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">username : </span> :
+        {{ currentUser?.username }}
+      </h3>
+      <br />
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">phoneNumber : </span>
+        :
+        {{ currentUser?.phoneNumber }}
+      </h3>
+      <br />
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">fullName : </span> :
+        {{ currentUser?.fullName }}
+      </h3>
+      <br />
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">card number : </span>
+        :
+        {{ currentUser?.account?.creditCard?.creditCardNumber }}
+      </h3>
+      <br />
+
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark">Balance : </span> :
+        {{ currentUser?.account?.balance }}
+      </h3>
+      <br />
+
+      <h3>
+        <span class="badge bg-warning fw-bolder text-dark"
+          >Account Type :
+        </span>
+        :
+        {{ currentUser?.account?.accountLimit }}
+      </h3>
+      <br />
+    </div>
+  </div>
+</div>
+
+<!--Il faut ajouter les liens de consultation et les logo-->
+<div class="container overflow-hidden" style="margin-top: 20px">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3 border bg-light d-flex flex-column align-items-center">
+        <div class="row m-2">
+          <a mat-fab extended [routerLink]="['..', 'change-password']">
+            <div class="d-flex justify-content-center align-items-center">
+              <mat-icon>security</mat-icon>
+              <div class="p-2">Change password</div>
+            </div>
+          </a>
+        </div>
+        <div class="row m-2">
+          <a mat-fab extended [routerLink]="['..','history']">
+            <div class="d-flex justify-content-center align-items-center">
+              <mat-icon>history</mat-icon>
+              <div class="p-2">Show History</div>
+            </div>
+          </a>
+        </div>
+        <div class="row m-2">
+          <a mat-fab extended [routerLink]="['..', 'orders']">
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <mat-icon>shopping_cart</mat-icon>
+              </div>
+              <div class="p-2">Show orders</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-3 border bg-light d-flex flex-column align-items-center">
+        <div class="row m-2">
+          <a mat-fab extended [routerLink]="['..', 'qa']">
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <mat-icon>question_answer</mat-icon>
+              </div>
+              <div class="p-2">Questions & Answers</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

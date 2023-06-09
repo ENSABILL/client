@@ -1,0 +1,17 @@
+<div class="card p-3">
+  <h3>Your Orders :</h3>
+
+  <app-table
+    [dataSource]="paidOrders"
+    [displayedColumns]="[
+      { name: 'id', value: ['orderId'] },
+      { name: 'qty', value: ['orderQte'] },
+      {
+        name: 'status',
+        value: ['orderStatus'],
+        class: 'badge bg-warning text-dark'
+      },
+      { name: 'productId', value: ['productId'] }
+    ]"
+  />
+</div>

@@ -28,6 +28,10 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
+  public getClientProfile() {
+    return this.http.get(`${API_BASE_URL}/client/profile`);
+  }
+
   login(username: string, password: string) {
     return this.http
       .post<User>(`${API_BASE_URL}/auth/login`, { username, password })
@@ -90,7 +94,17 @@ export class AuthService {
 
   updateUser(field: string, value: any) {
     // send post request here and change localstorage after if success
-    const user: User | null = this.tokenStorageService.setUserField(field, value);
+    const user: User | null = this.tokenStorageService.setUserField(
+      field,
+      value
+    );
     this.currentUserSubject.next(user);
+  }
+
+  changePasswordFromProfile(oldPassword: string, newPassword: string) {
+    return this.http.put(`${API_BASE_URL}/client/password`, {
+      oldPassword,
+      newPassword,
+    });
   }
 }

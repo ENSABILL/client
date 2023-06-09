@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Operation } from '../models/operation.model';
+import { Order } from '../models/order.model';
 
 const { API_BASE_URL } = environment;
 
@@ -47,5 +48,9 @@ export class OperationService {
       amount,
       token,
     });
+  }
+
+  getOrders(){
+    return this.http.get<Order[]>(`${API_BASE_URL}/order`);
   }
 }
