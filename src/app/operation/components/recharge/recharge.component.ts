@@ -45,7 +45,7 @@ export class RechargeComponent {
       this.alertService.warning('Creancier Not Found', {
         keepAfterRouteChange: true,
       });
-      this.router.navigate(['/', 'operations']);
+      this.router.navigate(['/', 'operations', 'creanciers']);
     }
     this.creancierService
       .getCreancier(creancierId || '')
@@ -66,7 +66,11 @@ export class RechargeComponent {
   addRecharge() {
     this.recharges = [
       ...this.recharges,
-      new Recharge(this.recharges.length + 1, parseInt(this.selectedRecharge), this.creancier?.id),
+      new Recharge(
+        this.recharges.length + 1,
+        parseInt(this.selectedRecharge),
+        this.creancier?.id
+      ),
     ];
   }
 

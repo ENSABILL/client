@@ -1,35 +1,16 @@
-<footer class="footer bg-dark text-light">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-4">
-          <h5>Contact Information</h5>
-          <ul class="list-unstyled">
-            <li>Address: 123 Main Street, City, Country</li>
-            <li>Phone: +1 234 567 890</li>
-            <li>Email: info@yourbank.com</li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Accounts</a></li>
-            <li><a href="#">Transactions</a></li>
-            <li><a href="#">Payments</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Social Media</h5>
-          <ul class="list-unstyled">
-            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-          </ul>
-        </div>
-      </div>
+<footer class="bg-dark text-light py-4">
+  <div class="container text-center">
+    <ul class="list-inline mb-3">
+      <li class="list-inline-item"><a [routerLink]="['/']" class="text-light">Home</a></li>
+      <li class="list-inline-item"><a [routerLink]="['/','operations','creanciers']" class="text-light">Nos creanciers</a></li>
+      <li class="list-inline-item"><a [routerLink]="['/','operations','products']" class="text-light">Nos produits</a></li>
+      <li class="list-inline-item"><a href="#partners" class="text-light">Nos partenaires</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
     </div>
-    <div class="container-fluid text-center py-3" style="background-color: #6D42BA;">
-      <span class="text-light">Your Bank &copy; 2023. All rights reserved.</span>
-    </div>
-  </footer>
-  
+    <p class="mt-3">eBanking App &copy; 2023. All rights reserved.</p>
+  </div>
+</footer>

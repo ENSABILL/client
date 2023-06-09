@@ -44,7 +44,7 @@ export class FactureComponent implements OnInit {
       this.alertService.warning('Creancier Not Found', {
         keepAfterRouteChange: true,
       });
-      this.router.navigate(['/', 'operations']);
+      this.router.navigate(['/', 'operations','creanciers']);
     }
     this.creancierService
       .getCreancier(creancierId || '')

@@ -50,7 +50,7 @@ export class DonationComponent {
       this.alertService.warning('Creancier Not Found', {
         keepAfterRouteChange: true,
       });
-      this.router.navigate(['/', 'operations']);
+      this.router.navigate(['/', 'operations','creanciers']);
     }
     this.creancierService
       .getCreancier(creancierId || '')
@@ -63,7 +63,7 @@ export class DonationComponent {
           this.alertService.error(err, {
             keepAfterRouteChange: true,
           });
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations','creanciers']);
         },
       });
   }

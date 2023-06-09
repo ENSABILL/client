@@ -50,7 +50,14 @@ export class OperationService {
     });
   }
 
-  getOrders(){
+  payProduct(productId?: string, orderQte?: string, token?: string) {
+    return this.http.post(`${API_BASE_URL}/order`, {
+      productId,
+      orderQte,
+    });
+  }
+
+  getOrders() {
     return this.http.get<Order[]>(`${API_BASE_URL}/order`);
   }
 }

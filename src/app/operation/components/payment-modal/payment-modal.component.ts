@@ -26,7 +26,11 @@ export class PaymentModalComponent {
     name: string;
     class?: string;
   }[] = [];
-  @Input() operationType: 'RECHARGE' | 'FACTURE' | 'DONATION' = 'FACTURE';
+  @Input() operationType:
+    | 'RECHARGE'
+    | 'FACTURE'
+    | 'DONATION'
+    | 'ACHAT_PRODUCT' = 'FACTURE';
   @Input() total: number = 0;
   token: string = '';
 
@@ -58,6 +62,9 @@ export class PaymentModalComponent {
       case 'RECHARGE':
         this.payRecharges();
         break;
+      case 'ACHAT_PRODUCT':
+        this.payProduct();
+        break;
       default:
         break;
     }
@@ -79,7 +86,7 @@ export class PaymentModalComponent {
             }
           );
           this.modalService.dismissAll();
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations', 'creanciers']);
         },
         error: (error) => {
           this.alertService.error(
@@ -90,7 +97,7 @@ export class PaymentModalComponent {
             }
           );
           this.modalService.dismissAll();
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations', 'creanciers']);
         },
       });
   }
@@ -113,7 +120,7 @@ export class PaymentModalComponent {
             }
           );
           this.modalService.dismissAll();
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations', 'creanciers']);
         },
         error: (error) => {
           this.alertService.error(
@@ -145,7 +152,7 @@ export class PaymentModalComponent {
             }
           );
           this.modalService.dismissAll();
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations', 'creanciers']);
         },
         error: (error) => {
           this.alertService.error(
@@ -156,7 +163,39 @@ export class PaymentModalComponent {
             }
           );
           this.modalService.dismissAll();
-          this.router.navigate(['/', 'operations']);
+          this.router.navigate(['/', 'operations', 'creanciers']);
+        },
+      });
+  }
+
+  payProduct() {
+    const orderQte = this.selectedOperations[0].orderQte;
+    const productId = this.selectedOperations[0].productId;
+
+    this.operationService
+      .payProduct(productId, orderQte, this.token)
+      .pipe(first())
+      .subscribe({
+        next: (_) => {
+          this.alertService.success(
+            'Your payment went successfully, thanks for using our service !',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations', 'creanciers']);
+        },
+        error: (error) => {
+          this.alertService.error(
+            error ||
+              'an error occured while processing payment! try again later',
+            {
+              keepAfterRouteChange: true,
+            }
+          );
+          this.modalService.dismissAll();
+          this.router.navigate(['/', 'operations', 'creanciers']);
         },
       });
   }
