@@ -1,0 +1,62 @@
+<div class="d-flex flex-column m-auto mt-2">
+  <div class="container">
+    <form [formGroup]="searchForm" (submit)="onSubmit()">
+      <mat-form-field class="w-100" appearance="fill">
+        <input
+          matInput
+          [formControl]="searchForm.controls.search"
+          placeholder="Search a creancier by name"
+          type="text"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div
+      class="d-flex align-items-center justify-content-center w-100"
+      *ngIf="loading; else creanciersBlock"
+    >
+      <mat-spinner class="p-0"></mat-spinner>
+    </div>
+    <ng-template #creanciersBlock>
+      <div *ngFor="let product of filteredProducts" class="col">
+        <div class="card mb-2 col h-100 p-2">
+          <div class="row g-0 h-100">
+            <div class="col-md-4 m-auto d-flex justify-content-center">
+              <img [src]="product.imageUrl" class="img-fluid rounded-start" />
+            </div>
+            <div class="col-md-8 d-flex flex-column justify-content-between">
+              <div class="card-body">
+                <h4 class="card-title">{{ product.name }}</h4>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    agency: {{ product.agencyName }}
+                  </li>
+                  <li class="list-group-item">Qty: {{ product.qte }}</li>
+                </ul>
+              </div>
+              <div class="d-flex justify-content-end m-2">
+                Price: {{ product.price }} DHS
+              </div>
+              <div class="d-flex justify-content-end m-2">
+                <a
+                  mat-raised-button
+                  color=""
+                  [routerLink]="['product', product?.id]"
+                  color="primary"
+                >
+                  <div class="d-flex justify-content-base align-items-center">
+                    Consulter
+                    <mat-icon>arrow_right_alt</mat-icon>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

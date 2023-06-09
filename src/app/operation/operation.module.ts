@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OperationRoutingModule } from './operation-routing.module';
 import { CreancierlistComponent } from './components/creancierlist/creancierlist.component';
-import { MainComponent } from './components/main/main.component';
+import { CreanciersMainComponent } from './components/creanciersmain/creanciersmain.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -21,17 +21,21 @@ import { OtpModalComponent } from './components/otp-modal/otp-modal.component';
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 import { TableComponent } from '../shared/components/table/table.component';
 import { HistoryComponent } from './components/history/history.component';
+import { ProductslistComponent } from './components/productslist/productslist.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
     CreancierlistComponent,
-    MainComponent,
+    CreanciersMainComponent,
     FactureComponent,
     DonationComponent,
     RechargeComponent,
     OtpModalComponent,
     PaymentModalComponent,
     HistoryComponent,
+    ProductslistComponent,
+    ProductComponent,
   ],
   imports: [
     CommonModule,

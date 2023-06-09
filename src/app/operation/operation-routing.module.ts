@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './components/main/main.component';
+import { CreanciersMainComponent } from './components/creanciersmain/creanciersmain.component';
 import { FactureComponent } from './components/facture/facture.component';
 import { RechargeComponent } from './components/recharge/recharge.component';
 import { DonationComponent } from './components/donation/donation.component';
+import { ProductslistComponent } from './components/productslist/productslist.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'creanciers',
     children: [
       {
         path: '',
-        component: MainComponent,
+        component: CreanciersMainComponent,
       },
       {
         path: 'recharge/:id',
@@ -24,6 +26,19 @@ const routes: Routes = [
       {
         path: 'donation/:id',
         component: DonationComponent,
+      },
+    ],
+  },
+  {
+    path: 'products',
+    children: [
+      {
+        path: '',
+        component: ProductslistComponent,
+      },
+      {
+        path: ':id',
+        component: ProductComponent,
       },
     ],
   },
